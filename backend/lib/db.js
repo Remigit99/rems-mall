@@ -6,7 +6,7 @@ export const connectDb = async() =>{
         console.log(`Connect to ${conn.connection.host}`);
             
     } catch (error) {
-    console.log("Error connection to Db")    
+    console.log("Error connection to Db", error)    
     }
     
 }
