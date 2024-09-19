@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-export const genrateTokens = (userId) =>{
+export const generateTokens = (userId) =>{
     const refreshToken = jwt.sign({userId}, process.env.REFRESH_TOKEN_SECRET, {
         expiresIn: "7d"
     } )
