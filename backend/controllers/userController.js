@@ -1,8 +1,10 @@
 import { User } from "../models/userModel.js";
 import bcryptjs from "bcryptjs";
 
+import { genrateTokens } from "../lib/generateTokens.js";
+
 export const signupController = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password,role } = req.body;
 
   try {
     if (!name || !email || !password) {
@@ -23,9 +25,13 @@ export const signupController = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role
     });
 
     const savedUser = await newUser.save();
+
+    const {accessToken, refreshToken } = generateTokens(savedUser._id)
+    
     console.log(savedUser)
   } catch (error) {
     res.status(500).json({success: false, message: "Error Creating User"})
