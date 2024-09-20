@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import router from "./routes/router.js"
 import { connectDb } from "./lib/db.js"
+import productRoutes from "./routes/productRouthes.js"
 dotenv.config()
 
 const app = express()
@@ -12,8 +13,9 @@ app.use(express.json())
 
 const PORT = 4000
 
-connectDb()
+// connectDb()
 app.use("/api/auth", router)
+app.use("/api/products", productRoutes)
 
 
 
