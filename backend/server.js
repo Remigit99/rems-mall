@@ -13,7 +13,7 @@ app.use(express.json())
 
 const PORT = 4000
 
-// connectDb()
+connectDb()
 app.use("/api/auth", router)
 app.use("/api/products", productRoutes)
 
