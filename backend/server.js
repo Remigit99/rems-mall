@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import router from "./routes/router.js"
 import { connectDb } from "./lib/db.js"
-import productRoutes from "./routes/productRouthes.js"
+import productRoutes from "./routes/productRoutes.js"
 dotenv.config()
 
 const app = express()
