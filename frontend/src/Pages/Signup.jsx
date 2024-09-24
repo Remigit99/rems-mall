@@ -114,7 +114,7 @@ const Signup = () => {
 
             <div className="text-center">
               <button className="btn" disabled={isLoading}>
-                {isLoading ? <Spinner /> : "Submit"}
+                {isLoading ? <Spinner /> : "Sign Up"}
               </button>
             </div>
           </form>
