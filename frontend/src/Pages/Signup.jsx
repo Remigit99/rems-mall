@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -45,7 +45,7 @@ const Signup = () => {
   return (
     <div className="container pt-36 ">
       <div className="grid place-content-center items-center rounded-2xl color__sec1 w-2/4 my-0 mx-auto  pt-10 pb-6">
-        <h1 className="text-3xl mt-8 mb-3">Create Your Account</h1>
+        <h1 className="text-3xl mt-8 mb-3 font-extrabold text-center">Create Your Account</h1>
 
         <div>
           <form onSubmit={handleSubmit}>
@@ -54,7 +54,7 @@ const Signup = () => {
                 <FaRegUser className="text-[1.5rem] border-r-xl" />
               </div>
               <input
-                className="bg-transparent px-4 py-2 outline-none border-none"
+                className="bg-transparent px-4 py-2 outline-none border-none w-full"
                 type="text"
                 name="fullName"
                 id="fullName"
@@ -70,7 +70,7 @@ const Signup = () => {
                 <MdOutlineMail className="text-[1.5rem] border-r-xl" />
               </div>
               <input
-                className="bg-transparent px-4 py-2 outline-none border-none"
+                className="bg-transparent px-4 py-2 outline-none border-none w-full"
                 type="email"
                 name="email"
                 id="email"
@@ -86,7 +86,7 @@ const Signup = () => {
                 <RiLockPasswordLine className="text-[1.5rem] border-" />
               </div>
               <input
-                className="bg-transparent px-4 py-2 outline-none border-none"
+                className="bg-transparent px-4 py-2 outline-none border-none w-full"
                 type={passwordVisibility ? "text" : "password"}
                 name="password"
                 id="password"
@@ -118,6 +118,10 @@ const Signup = () => {
               </button>
             </div>
           </form>
+        </div>
+
+        <div className="mt-8 mb-2">
+          <h3 className="text-2xl"> Already have an account? <Link to="/login" className="font-extrabold">Login</Link> </h3>  
         </div>
       </div>
     </div>

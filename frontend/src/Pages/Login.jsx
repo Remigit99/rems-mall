@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { LuEye } from "react-icons/lu";
@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div className="container pt-36 ">
       <div className="grid place-content-center items-center rounded-2xl color__sec1 w-2/4 my-0 mx-auto  pt-10 pb-6">
-        <h1 className="text-3xl mt-8 mb-3 text-center">Login</h1>
+        <h1 className="text-3xl mt-8 mb-3 text-center font-extrabold">Login</h1>
 
         <div>
           <form onSubmit={handleSubmit}>
@@ -100,6 +100,10 @@ const Login = () => {
               </button>
             </div>
           </form>
+        </div>
+
+        <div className="mt-8 mb-2">
+          <h3 className="text-2xl"> Don&apos;t have an account? <Link to="/signup" className="font-extrabold">Sign Up</Link> </h3>  
         </div>
       </div>
     </div>
