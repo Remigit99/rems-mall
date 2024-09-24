@@ -27,3 +27,25 @@ nav{
   width: 80%;
   margin: 0 auto;
 }
+
+.color__sec1{
+  color: black;
+  background-color: #ef9e8580;
+}
+
+.btn{
+  padding: 0.5rem 1.5rem;
+  outline: none;
+  border: none;
+  background-color: #F46F4D;
+  color: white;
+  border-radius: 5rem;
+}
+
+/* clr-pry-1: #F46F4D;
+clr-pry-2: #ED7A5D;
+clr-sec-1: #EF9E86;
+clr-sec-2: #EF9E86; --50%
+clr-blk: #0B0F28;
+clr-grey-1: #3f4146;
+clr-grey-2: #65655; */

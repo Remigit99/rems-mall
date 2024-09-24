@@ -5,6 +5,8 @@ import { CiHeart } from "react-icons/ci";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 
 const Navbar = () => {
+  let user = false;
+
   return (
     <nav className=" nav  w-full my-0 mx-auto fixed top-0 left-0 h-16 flex justify-between align-center ">
       <div className="container w-[96%] md:w-[90%] lg:w-[80%] flex justify-between align-center">
@@ -23,11 +25,19 @@ const Navbar = () => {
           <Link to="/contact">Contact</Link>
         </ul>
 
-        <div className="flex align-middle gap-6 text-white">
-          <FaRegUser className="text-xl" />
-          <CiHeart className="text-xl"/>
-          <LiaShoppingBagSolid className="text-xl"/>
-        </div>
+        {user ? (
+          <div className="flex align-middle gap-6 text-white">
+            <FaRegUser className="text-xl" />
+            <CiHeart className="text-xl" />
+            <LiaShoppingBagSolid className="text-xl" />
+          </div>
+        ) : (
+          <div className="flex align-middle gap-6 text-white">
+            <Link to={"/signup"}>Sign Up</Link>
+            <Link to={"/login"}>Login</Link>
+            <LiaShoppingBagSolid className="text-xl" />
+          </div>
+        )}
       </div>
     </nav>
   );
