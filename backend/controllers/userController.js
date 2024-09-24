@@ -7,19 +7,19 @@ import { setCookies } from "../lib/setCookies.js";
 import { clearCookies } from "../lib/clearCookie.js";
 
 export const signupController = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   try {
-    if (!name || !email || !password) {
-      res
-        .status(400)
-        .json({ success: false, message: "All fields must be filled" });
-    }
+    // if (!name || !email || !password) {
+    // return  res
+    //     .status(400)
+    //     .json({ success: false, message: "All fields must be filled" });
+    // }
 
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      res.status(400).json({ success: false, message: "User Already Exists" });
+     return res.status(400).json({ success: false, message: "User Already Exists" });
     }
 
     const hashedPassword = await bcryptjs.hash(password, 10);
@@ -28,7 +28,6 @@ export const signupController = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role,
     });
 
     const savedUser = await newUser.save();
@@ -41,8 +40,16 @@ export const signupController = async (req, res) => {
       savedUser
       // , accessToken, refreshToken
     );
+
+        // Send success response
+        return res.status(201).json({
+          success: true,
+          message: "User created successfully",
+          user: savedUser,
+        });
+    
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error Creating User" });
+   return res.status(500).json({ success: false, message: "Error Creating User" });
   }
 };
 
