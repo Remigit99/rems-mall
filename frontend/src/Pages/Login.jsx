@@ -52,7 +52,7 @@ const Login = () => {
                 <MdOutlineMail className="text-[1.5rem] border-r-xl" />
               </div>
               <input
-                className="bg-transparent px-4 py-2 outline-none border-none"
+                className="bg-transparent px-4 py-2 outline-none border-none w-full"
                 type="email"
                 name="email"
                 id="email"
@@ -68,7 +68,7 @@ const Login = () => {
                 <RiLockPasswordLine className="text-[1.5rem] border-" />
               </div>
               <input
-                className="bg-transparent px-4 py-2 outline-none border-none"
+                className="bg-transparent px-4 py-2 outline-none border-none w-full"
                 type={passwordVisibility ? "text" : "password"}
                 name="password"
                 id="password"

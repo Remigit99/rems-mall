@@ -1,5 +1,4 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate , Link} from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
@@ -8,10 +7,15 @@ import { LuEye } from "react-icons/lu";
 import { GoEyeClosed } from "react-icons/go";
 
 import { Spinner } from "../../lib/Spinner";
-import { axiosInstance } from "../../lib/axios";
+import { useUserStore } from "../../store/useUserStore";
+
 
 const Signup = () => {
+
   const navigate = useNavigate();
+  const {signup, isLoading, user} = useUserStore()
+
+
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -19,25 +23,17 @@ const Signup = () => {
     password: "",
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
+   
     console.log(formData);
-    try {
-      const response = await axiosInstance.post("/auth/signup", formData);
-      console.log(response, response.data);
-      setIsLoading(false);
-      toast.success("Sign Up Successfully");
-      navigate("/login");
-    } catch (error) {
-      console.log(error.message);
-      setIsLoading(false);
-      toast.error(error.message);
-    }
-    // setIsLoading(false)
+   signup(formData)
+   if(user){
+    navigate("/login");
+  }
   };
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
