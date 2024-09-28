@@ -34,6 +34,9 @@ export const signupController = async (req, res) => {
 
     const { accessToken, refreshToken } = generateTokens(savedUser._id);
 
+    // store generated refreshToken into DB
+    savedUser.refreshToken = refreshToken
+    await savedUser.save()
     setCookies(res, accessToken, refreshToken);
 
     console.log(
@@ -84,6 +87,33 @@ export const loginController = async (req, res) => {
 };
 
 //Logout Controller
-export const logoutController = (req, res) => {
-  clearCookies(req, res);
+export const logoutController = async(req, res) => {
+  const refreshToken = req.cookies.refresh_token
+
+    if(!refreshToken){
+        return res.status(400).json({msg: "No refreshToken found"})
+    }
+
+    try {
+      const  user = await User.findOne({refreshToken}) 
+        
+      if(!user){
+        return res.status(400).json({msg: "user not found"})
+      }
+
+      user.refreshToken = null
+      await user.save()
+
+       res.clearCookie("refreshToken",  {
+        httpOnly: true,
+        sameSite:  "None",
+        secure: process.env.NODE_ENV === "production"
+    })
+
+    return res.status(200).json({success: true, msg: "Logged out Successfully"})
+
+    } catch (error) {
+    return res.status(500).json({success: false, msg: "Error during logout"})
+        
+    }
 };

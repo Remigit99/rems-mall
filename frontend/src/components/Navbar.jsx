@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
+// import { useState } from "react";
 // import {Camera} from "lucide-react"
 import { FaRegUser } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import { LiaShoppingBagSolid } from "react-icons/lia";
+import { IoLogOutOutline } from "react-icons/io5";
+import {useUserStore} from "../../store/useUserStore"
+import Logout from "./Logout";
 
 const Navbar = () => {
-  let user = false;
+const {user} = useUserStore()
+
+  // let user = true;
+  console.log(user)
+
+  // const [logo]
 
   return (
     <nav className=" nav  w-full my-0 mx-auto fixed top-0 left-0 h-16 flex justify-between align-center ">
@@ -30,6 +39,7 @@ const Navbar = () => {
             <FaRegUser className="text-xl" />
             <CiHeart className="text-xl" />
             <LiaShoppingBagSolid className="text-xl" />
+            <IoLogOutOutline className="text-xl" onClick={Logout} />
           </div>
         ) : (
           <div className="flex align-middle gap-6 text-white">
